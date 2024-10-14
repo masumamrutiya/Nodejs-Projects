@@ -1,21 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Record</title>
-</head>
-<body>
-    <h1>Edit Record</h1>
+    <style>
+      /* General body styling */
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ff8a00, #e52e71);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        color: #fff;
+      }
 
-    <form action="/update/<%= index%>" method="post">
+      /* Header styling */
+      header {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        text-align: center;
+        font-size: 2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        animation: slideInDown 1s ease;
+      }
 
-        <label for="Record">Record : </label>
-        <input type="text" name="Record" id="Record" value="<%=Record%>" required>
+      /* Container styling */
+      .container {
+        flex: 1;
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      h1 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      /* Input styling */
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+        font-size: 1rem;
+        transition: box-shadow 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        box-shadow: 0 0 15px rgba(255, 138, 0, 0.5);
+        outline: none;
+      }
+
+      /* Button styling */
+      button {
+        background: linear-gradient(135deg, #28a745, #218838);
+        border: none;
+        padding: 12px 20px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 13%;
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        display: block;
+        /* width: 100%; */
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      button:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+      }
+
+      /* Link styling */
+      a {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 25px;
+        text-decoration: none;
+        color: #97b327;
+        font-weight: bold;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      /* Footer styling */
+      footer {
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        animation: slideInUp 1s ease;
+      }
+
+      /* Animations */
+      @keyframes slideInDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>ToDoList Project</header>
+    <div class="container">
+      <h1>Edit Your Record</h1>
+      <form action="/update/<%= index %>" method="post">
+        <label for="Record" style="color: #fff;">Record:</label>
+        <input
+          type="text"
+          name="Record"
+          value="<%= Record %>"
+          required
+        />
         <button type="submit">Update</button>
-
-    </form>
-
-    <a href="/">Cancel</a>
-</body>
+      </form>
+      <a href="/">Cancel</a>
+    </div>
+    <footer>&copy; 2024 ToDoList Project</footer>
+  </body>
 </html>

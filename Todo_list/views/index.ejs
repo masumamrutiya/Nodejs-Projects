@@ -3,43 +3,192 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Record Management</title>
     <style>
+      /* General body styling */
       body {
-        background-color: rgb(133, 66, 66);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ff8a00, #e52e71);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        color: #fff;
       }
+
+      /* Header styling */
+      header {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        text-align: center;
+        font-size: 2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        animation: slideInDown 1s ease;
+      }
+
+      /* Container for content */
       .container {
+        flex: 1;
         width: 100%;
-        max-width: 1200px; /* Add a max-width to limit container size */
+        max-width: 800px;
         margin: auto;
-        padding: 20px; /* Optional: Adds some padding */
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      /* Form input styling */
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+        font-size: 1rem;
+        transition: box-shadow 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        box-shadow: 0 0 15px rgba(255, 138, 0, 0.5);
+        outline: none;
+      }
+
+      /* Button styling */
+      button {
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        border: none;
+        padding: 12px 20px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        /* border-radius: 25px; */
+        border-radius: 12%; 
+        transition: background-color 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      button:hover {
+        background-color: #e52e71;
+        transform: scale(1.05);
+      }
+
+      /* List styling */
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      li button {
+        margin-left: 10px;
+        background-color: #ff5757;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+
+      /* Footer styling */
+      footer {
+        background-color: rgba(0, 0, 0, 0.9);
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        animation: slideInUp 1s ease;
+      }
+
+      /* Animations */
+      @keyframes slideInDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      a {
+        color: #ff8a00;
+        text-decoration: none;
       }
     </style>
   </head>
   <body>
+    <header>ToDoList Project</header>
     <div class="container">
-      <h1 style="color: antiquewhite; text-align: center">
-        Welcome To My Home Page !
-      </h1>
-
+      <h2 style="text-align: center">Manage Your Records</h2>
       <form action="/add" method="post">
-        <input type="text" name="Record" id=""  />
-        <button>Add</button>  
-     </form>
+        <input
+          type="text"
+          name="Record"
+          placeholder="Enter a new record"
+          required
+        />
+        <button>Add Record</button>
+      </form>
 
-     <ul>
-        <% Records.forEach((Record,index)=>{%>
-      <li style="color: rgb(11, 14, 12);">
-        <%= Record %>
-        <form action="/editpage/<%= index%>" method="post" style="display: inline;" >
-            <button type="submit">Edit</button>
-          </form>
-          <form action="/delete/<%= index%>" method="get" style="display: inline;">
-            <button type="submit">Delete</button>
-          </form>
-      </li>
-        <%})%>
-     </ul>
+      <ul>
+        <% Records.forEach((Record, index) => { %>
+        <li>
+          <span><%= Record %></span>
+          <div>
+            <form action="/editpage/<%= index %>" method="post" style="display:inline;">
+              <button type="submit">Edit</button>
+            </form>
+            <form action="/delete/<%= index %>" method="get" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        </li>
+        <% }) %>
+      </ul>
     </div>
+
+    <footer>&copy; 2024 ToDoList Project</footer>
   </body>
 </html>
