@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: rgb(133, 66, 66);
+      }
+      .container {
+        width: 100%;
+        max-width: 1200px; /* Add a max-width to limit container size */
+        margin: auto;
+        padding: 20px; /* Optional: Adds some padding */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="color: antiquewhite; text-align: center">
+        Welcome To My Home Page !
+      </h1>
+
+      <form action="/add" method="post">
+        <input type="text" name="Record" id=""  />
+        <button>Add</button>  
+     </form>
+
+     <ul>
+        <% Records.forEach((Record,index)=>{%>
+      <li style="color: rgb(11, 14, 12);">
+        <%= Record %>
+        <form action="/editpage/<%= index%>" method="post" style="display: inline;" >
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/delete/<%= index%>" method="get" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+      </li>
+        <%})%>
+     </ul>
+    </div>
+  </body>
+</html>
